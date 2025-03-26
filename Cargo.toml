@@ -1,0 +1,8 @@
+[package]
+name = "dump-chat-templates"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+llama-cpp-sys-2 = { git = "https://github.com/nobodywho-ooo/llama-cpp-rs.git", branch = "model-meta-val-stuff" }
+llama-cpp-2 = { git = "https://github.com/nobodywho-ooo/llama-cpp-rs.git", branch = "model-meta-val-stuff" }
