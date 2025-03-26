@@ -5,8 +5,8 @@
   outputs = inputs: let 
     system = "x86_64-linux";
     pkgs = import inputs.nixpkgs { inherit system; };
-  in {
-    packages.${system}.default = pkgs.rustPlatform.buildRustPackage {
+    
+    dumpChatTemplates = pkgs.rustPlatform.buildRustPackage {
       pname = "dump-chat-templates";
       version = "0.1.0";
       src = ./.;
@@ -20,6 +20,15 @@
         rustPlatform.bindgenHook
       ];
     };
+    
+  in {
+    packages.${system}.default = dumpChatTemplates;
+    
+    apps.${system}.default = {
+      type = "app";
+      program = pkgs.lib.getExe dumpChatTemplates;
+    };
+    
     devShells.${system}.default = pkgs.callPackage ./shell.nix {};
   };
 }
